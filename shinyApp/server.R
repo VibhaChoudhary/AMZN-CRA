@@ -2,31 +2,27 @@ library(ggplot2)
 library(scales)
 library(data.table)
 
-
+dirpath="shinyApp//data//RData//"
 function(input, output) {
  
   total_counts <- reactive({
-    dir1 = paste0("shinyApp//data//RData//total")
-    get(load(paste0(dir1,"//all_counts.RData"),envir=.GlobalEnv))
+     get(load(file.path(paste0(dirpath,"total"),all_counts.RData"),envir=.GlobalEnv))
   })
   
   
   total_analysis <- reactive({
-    dir1 = paste0("shinyApp//data//RData//total")
-    get(load(paste0(dir1,"//analysis.RData"),envir=.GlobalEnv))
+    get(load(file.path(paste0(dirpath,"total"),analysis.RData"),envir=.GlobalEnv))
   })
   
   category_counts <- reactive({
    if(input$category!="All"){
-    dir1 = paste0("shinyApp//data//RData//")
-    get(load(paste0(dir1,tolower(input$category),"//all_counts.RData"),envir=.GlobalEnv))
+      get(load(file.path(paste0(dirpath,(input$category)),all_counts.RData"),envir=.GlobalEnv))
   }
   })
   
   category_analysis <- reactive({
     if(input$category!="All"){
-      dir1 = paste0("shinyApp//data//RData//")
-      get(load(paste0(dir1,tolower(input$category),"//analysis.RData"),envir=.GlobalEnv))
+      get(load(file.path(paste0(dirpath,(input$category)),analysis.RData"),envir=.GlobalEnv))
     }
   })
   
