@@ -1,0 +1,8 @@
+library(data.table)
+library(ggplot2)
+library(scales)
+library(dplyr)
+library(lubridate)
+library(doParallel)
+library(foreach)
+registerDoParallel(detectCores())
